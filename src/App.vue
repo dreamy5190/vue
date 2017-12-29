@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>    
-      <transition name="fade">
+      <transition name="fade" mode="out-in">
           <router-view/>
       </transition>   
     <Footer></Footer>
@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style>
+body{padding: 0px;}
 a:hover{border: none;text-decoration: none;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
