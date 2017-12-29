@@ -12,7 +12,6 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-
 var data = {
   msg:'hello world',
   docs:''
@@ -27,6 +26,7 @@ export default {
 </script>
 
 <style>
+a:hover{border: none;text-decoration: none;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

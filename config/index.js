@@ -44,11 +44,11 @@ module.exports = {
   build: {
     // Template for index.html
     //index: path.resolve(__dirname, '../dist/index.html'),
-    index: path.resolve(__dirname, '../../../cjt/CJT/Application/Home/View/default/Vueindex/index.html'),
+    index: path.resolve(__dirname, '../../../../CJT/Application/Home/View/default/Vueindex/index.html'),
     //index:path.resolve(__dirname, '../../../vuetp/Application/Home/View/Index/index.html'),
     // Paths
-    assetsRoot: path.resolve(__dirname, '../../../cjt/CJT/'),
-    //assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../../../../CJT/'),
+    //: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     //assetsPublicPath: './',
     assetsPublicPath: 'http://smzcxf.com/',

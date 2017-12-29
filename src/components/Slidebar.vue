@@ -1,14 +1,14 @@
 <template>
 	<div class="page-swipe">
-	<mt-swipe :auto="4000">
+	<mt-swipe :auto="6000">
 	  <mt-swipe-item class="bg-red">
-	  		1111
+	  		<img src="../assets/images/ads01.jpg">
 	  </mt-swipe-item>
 	  <mt-swipe-item class="bg-blue">
-	  		2222
+	  		<img src="../assets/images/ads02.jpg">
 	  </mt-swipe-item>
 	  <mt-swipe-item class="bg-green">
-	  		3333
+	  		<img src="../assets/images/ads03.jpg">
 	  </mt-swipe-item>
 	</mt-swipe>
 	</div>

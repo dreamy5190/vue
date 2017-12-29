@@ -8,7 +8,7 @@ import Mint from 'mint-ui'
 
 Vue.use(Mint);
 if(Vue.config.devtools){
-  Vue.prototype.devURL = 'http://localhost/cjt/CJT/'
+  Vue.prototype.devURL = 'http://localhost/CJT/'
 }else{
   Vue.prototype.devURL = ''
 }

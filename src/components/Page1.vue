@@ -3,18 +3,19 @@
 		<Slidebar></Slidebar>
 		<div class="mid-wrap">	
 			<div class="pages page1" style="animation-delay: ">
-				<transition-group name="list" tag="ul" class="doc-list">
-				    <li v-for="doc in docs" 
-				    v-bind:key="doc.title" 
-				    v-bind:style="{'transition-delay':doc.index*0.1+'s'}" 
-				    class="list-item" 		    
-				    >
+				<transition-group name="list" tag="div" class="doc-list">
+				    <router-link :to="{path:'detail', query: { id: doc.id }}" 
+				    	v-for="doc in docs" 
+						    v-bind:key="doc.title" 
+						    v-bind:style="{'transition-delay':doc.index*0.1+'s'}" 
+						    class="list-item" 		    
+						    >
 				    	<div class="doc-box">
 				    		<p>{{ doc.title }}</p>
 				    		<p class="doc-desc">{{ doc.description}}</p>
 				    		<p class="doc-infos"><span>{{ formatDate(doc.update_time) }}</span></p>
 				    	</div>
-					</li>
+				    </router-link>
 				</transition-group>	
 			</div>
 		</div>
@@ -22,7 +23,9 @@
 </template>
 <style type="text/css">
 	.doc-list{display: flex;flex-wrap: wrap;margin-left: -0.5%}
-	.doc-list li{width: 19%;height: 160px;background-color: #666;color: #fff;margin-top: 10px;margin-left: 1%;text-align: left;}
+	.doc-list a{width: 19%;height: 160px;display: block;background-color: #666;color: #fff;margin-top: 10px;margin-left: 1%;text-align: left;}
+	.doc-list a{color: #fff;}
+	.doc-list a:hover{box-shadow: 0px 0px 4px rgba(0,0,0,0.6);}
 	.doc-box{width: 90%;margin: 10px auto;height: 140px;position: relative;}
 	.doc-desc{font-size: 12px;color: #999;}
 	.doc-infos{position: absolute;bottom: -5px;right: 0px;color: #999;font-size: 12px;}
