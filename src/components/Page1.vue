@@ -122,10 +122,10 @@
 		},
 		components:{Slidebar},
 		mounted () {
-		  //window.addEventListener('scroll', this.handleScroll)
+		  
 		},
 		created:function(){
-			console.info('created');
+			//console.info('created');
 			let _that = this;
 			let p1 = this.get_doc();
 			p1.then(function(){
@@ -150,7 +150,7 @@
 					data.params = new URLSearchParams()
 					data.params.append('cid', data.cid);
 					data.params.append('p', 0);
-					console.info(data.cid);
+					//console.info(data.cid);
 					data.loading = true;
 					this.$http({
 				        baseURL:this.devURL,
@@ -181,28 +181,7 @@
 					});
 
 			    });
-			},
-	        handleScroll () {	
-	        	//这种加载方式不合适在首页
-				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-				var offsetTop = document.querySelector('.duanzi').offsetTop;
-				var offsetTopGame = document.querySelector('.game').offsetTop;
-				var distance = 600;
-				if(offsetTop - scrollTop < distance) {
-					if(data.duanzi.length == 0){
-						data.cid = 50;
-						this.get_doc();	
-					}				
-				}
-				if(offsetTopGame - scrollTop < distance) {
-					console.info('loadmore');
-					if(data.games.length == 0){
-						data.cid = 10000;
-						this.get_doc();		
-					}
-			
-				}
-			},
+			}
 	    }
 	}
 </script>

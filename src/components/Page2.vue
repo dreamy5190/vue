@@ -32,7 +32,7 @@
 	.page2-title{display: inline-block;width:70%;text-overflow: ellipsis;white-space: pre;overflow: hidden;float: left;}
 
 	@media only screen and (max-width: 500px) {
-	  .doc-item a b{margin-left: 0px;}
+	  .doc-item a b{margin-left: 5px;}
 	}
 
 	.slideUp-enter-active{
@@ -61,7 +61,8 @@
 		loading:false,
 		delayOffset:0,
 		nomoreDelay:0,
-		scrollDist:0
+		scrollDist:0,
+		bodyScrollTop:0,
 	};
 	export default{
 		name:'page2',
@@ -75,11 +76,14 @@
 		    	data.cid = to.query.cid;
 		    	data.delayOffset=1;
 		        let _that = this;
-				_that.get_doc();
-	         
-		    }  
+				_that.get_doc();	         
+		    },
+		    'bodyScrollTop':function(){
+		    	this.handleScroll();
+		    }
 		},
 		created:function(){
+			//window.addEventListener('scroll', this.handleScrollEvent);
 			this.init();
 			let cid = this.$route.query.cid;
 			data.cid = cid;					
@@ -88,9 +92,10 @@
 			}			
 			data.params.append('cid', cid);
 			this.get_doc();
+			
 		},
 		mounted () {
-		  window.addEventListener('scroll', this.handleScroll)
+		  window.addEventListener('scroll', this.handleScrollEvent);
 		},
 		methods: {
 			init(){
@@ -118,7 +123,7 @@
 			    }).then(function(response){				    			    	
 			    	let res = response.data;
 			    	if(res.data){			  
-			    		console.info(data.delayOffset);
+			    		//console.info(data.delayOffset);
 				    	for(let i = 0;i<res.data.length;i++){
 				    		res.data[i].index = i+data.page*20;
 				    		res.data[i].delay = i*0.1+data.delayOffset;
@@ -135,20 +140,21 @@
 			    	}			    	
 				 });
 			},
+			handleScrollEvent:function(){
+				this.bodyScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+			},
 			handleScroll () {	
-				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-				//if(Math.abs(scrollTop - scrollDist) > 100){			
-					data.scrollDist = scrollTop;
-					var offsetTop = document.querySelector('.vue-footer ').offsetTop;
-					var distance = 600;
-					//console.info(offsetTop,scrollTop);
-					if(offsetTop - scrollTop < distance) {
-						console.info('loading more');
-			    		data.delayOffset = 0;
-						let _that = this;
-						_that.get_doc();					
-					}
-				//}
+				var wh = window.innerHeight;
+				var scrollTop = this.bodyScrollTop;
+				var offsetTop = document.querySelector('.vue-footer').offsetTop;
+				var distance = 600;
+				//console.info(wh,scrollTop,offsetTop);
+				if(offsetTop - scrollTop < wh) {
+					//console.info('loading more');
+		    		data.delayOffset = 0;
+					let _that = this;
+					_that.get_doc();					
+				}
 			},
 	    }
 	}

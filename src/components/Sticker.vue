@@ -109,6 +109,7 @@
 </style>
 <script type="text/javascript">
 	var data = {
+		bodyScrollTop:0,
 		cv:'',
 		ctx:'',
 		bgcolor:"#f5f5f5",
@@ -215,7 +216,8 @@
 			return data;
 		},
 		created:function(){
-			//this.load();
+			//window.addEventListener('load',this.load);
+		  	//window.addEventListener('scroll', this.cvScroll)
 		},
 		watch:{
 			'message':function(){
@@ -229,11 +231,14 @@
 			},
 			'fontsize':function(){
 				this.createSticker();
+			},
+			'bodyScrollTop':function(){
+				this.cvScroll()
 			}
 		},
 		mounted(){
 		  	window.addEventListener('load',this.load);
-		  	window.addEventListener('scroll', this.handleScroll)
+		  	window.addEventListener('scroll', this.cvScrollEvent)
 		},
 		methods:{
 		  	load:function(){
@@ -288,8 +293,7 @@
 		  			var dw = img.naturalWidth;
 		  			var dh = img.naturalHeight;		
 		  			//用背景色填充画布  	
-		  			console.info(_that.bgcolor);		
-
+		  			//console.info(_that.bgcolor);	
 
 			  		var txt_width = ctx.measureText(txt).width;
 			  		var txtX = _that.txtOffsetWidth/2;
@@ -315,8 +319,12 @@
 			  		_that.imgdata = _that.cv.toDataURL();
 		  		}
 		  	},
-		  	handleScroll:function(){
-				var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		  	cvScrollEvent:function(){
+		  		this.bodyScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		  	},
+		  	cvScroll:function(){
+		  		//console.info('cvScroll');
+				var scrollTop = this.bodyScrollTop
 				var offsetTop = document.querySelector('.sticker-cv ').offsetTop;
 				//console.info(offsetTop - scrollTop);
 				if(offsetTop - scrollTop < 0) {
