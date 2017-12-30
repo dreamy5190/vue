@@ -23,6 +23,7 @@
 	}
 </script>
 <style type="text/css">
+	.page-swipe{min-width: 1210px;}
 	.mint-swipe{height: 260px;}
 	.mint-swipe-item{height: 100%;background-color: #000;color: #fff;}
 	.bg-green{background-color: #aaa;}

@@ -76,7 +76,7 @@
 		},
 		methods: {
 	        formatDate(time) {
-	        	return new Date(parseInt(time) * 1000).format('yyyy-M-d');
+	        	return new Date(parseInt(time) * 1000).format('yyyy-MM-dd');
 	        }
 	    }
 	}

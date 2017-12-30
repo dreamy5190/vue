@@ -21,13 +21,13 @@ export default {
   data: function () {
     return data
   },
-  components:{Navbar,Footer},
+  components:{Navbar,Footer}, 
 }
 </script>
 
 <style>
 body{padding: 0px;}
-a:hover{border: none;text-decoration: none;}
+a:hover,a:focus{border: none;text-decoration: none;}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
