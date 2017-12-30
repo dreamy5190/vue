@@ -12,6 +12,9 @@
 	body{padding: 0px;}
 	.page-detail{margin: 20px;}
 	.content{text-align: left;margin-top: 20px;}
+	@media only screen and (max-width: 500px) {
+		.page-detail{margin: 1%;}
+	}
 </style>
 <script type="text/javascript">
 	var detail = {

@@ -26,8 +26,9 @@ export default {
 </script>
 
 <style>
-body{padding: 0px;}
+body,p{padding: 0px;margin: 0px;}
 a:hover,a:focus{border: none;text-decoration: none;}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,7 +36,13 @@ a:hover,a:focus{border: none;text-decoration: none;}
   text-align: center;
   color: #2c3e50;
 }
+
+
 .mid-wrap{min-height: 800px;width: 80%;margin: 0 auto;position: relative;overflow: hidden;}
+@media only screen and (max-width: 500px) {
+  .mid-wrap{width: 96%;margin: 0 auto;position: relative;overflow: hidden;}
+}
+
 /*.pages{position: absolute;left: 0px;top: 0px;width: 100%;}*/
 .slide-enter-active{
   animation:slideInLeft 0.6s;

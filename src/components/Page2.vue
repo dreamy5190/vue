@@ -7,14 +7,14 @@
 				v-bind:style="{'transition-delay':doc.delay+'s'}"				
 				class="doc-item"
 			>				
-				<router-link :to="{path:'detail', query: { id: doc.id }}" >
-					<b>{{ doc.index +1 }}</b>、{{ doc.title }}<span>{{ formatDate(doc.update_time) }}</span>
+				<router-link :to="{path:'detail', query: { id: doc.id }}" class="cf">
+					<b class="page2-title"><b>{{ doc.index +1 }}</b>、{{ doc.title }}</b><span>{{ formatDate(doc.update_time) }}</span>
 				</router-link>
 			</div>
 			</transition-group>	
 			<transition name="slideUp">
 				<div class="doc-last" v-if='!hasNext'>
-					<p>···············<span>没有更多啦</span>··················</p>
+					<p>······<span>没有更多啦</span>······</p>
 				</div>
 			</transition>
 		</div>
@@ -23,12 +23,17 @@
 <style type="text/css">
 	.docs-box{width: 100%;}
 	.doc-item{text-align: left;margin: 0px auto;height: 50px;border-bottom: 1px dashed #ccc;}
-	.doc-item a{line-height: 50px;color: #666;display: block;width: 100%;height: 100%;transition: all 0.6s;font-size: 16px;}
+	.doc-item a{line-height: 50px;color: #666;display: block;width: 100%;height: 100%;transition: all 0.6s;font-size: 16px;position: relative;}
 	.doc-item a:hover{background-color: #ccc;color: #fff;}
 	.doc-item a b{margin-left: 10px;}
 	.doc-item a span{float: right;margin-right: 10px;}
 	.doc-last{text-align: center;line-height: 60px;color: #ccc;}
 	.doc-last span{margin: 0 20px;}
+	.page2-title{display: inline-block;width:70%;text-overflow: ellipsis;white-space: pre;overflow: hidden;float: left;}
+
+	@media only screen and (max-width: 500px) {
+	  .doc-item a b{margin-left: 0px;}
+	}
 
 	.slideUp-enter-active{
 	   transition: all 1s;

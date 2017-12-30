@@ -12,6 +12,17 @@ if(Vue.config.devtools){
 }else{
   Vue.prototype.devURL = ''
 }
+var ua = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+var isWX = /MicroMessenger/i.test(ua), //微信端
+     isIOS = /(iPhone|iPad|iPod|iOS)/i.test(ua), //苹果家族
+     isAndroid = /(android|nexus)/i.test(ua), //安卓家族
+     isWindows = /(Windows Phone|windows[\s+]phone)/i.test(ua), //微软家族
+     isBlackBerry = /BlackBerry/i.test(ua); //黑莓家族
+if(isWX || isIOS || isAndroid || isBlackBerry){
+  Vue.prototype.ismobile = true;
+}else{
+  Vue.prototype.ismobile = false;
+}
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 /**
