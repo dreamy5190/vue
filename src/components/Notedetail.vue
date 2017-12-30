@@ -1,7 +1,7 @@
 <template>
 	<div class="mid-wrap">
 		<div class="pages page-detail">
-			<h2 style="text-align:left;">{{ title }}</h2>
+			<h2 style="text-align:left;margin-top:20px;">{{ title }}</h2>
 			<div v-html='content' class="content">
 				{{ content }}
 			</div>
@@ -13,7 +13,7 @@
 	.page-detail{margin: 20px;}
 	.content{text-align: left;margin-top: 20px;}
 	@media only screen and (max-width: 500px) {
-		.page-detail{margin: 1%;}
+		.page-detail{margin: 0 3%;}
 	}
 </style>
 <script type="text/javascript">
@@ -26,10 +26,14 @@
 		data:function(){
 			return detail;
 		},
+
 		methods:{
 	
 		},
 		created:function(){
+			//console.info('detail');
+			this.title = '';
+			this.content = '';
 			let id = this.$route.query.id;
 			if(id){
 				var params = new URLSearchParams();

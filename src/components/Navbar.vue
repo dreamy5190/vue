@@ -2,7 +2,7 @@
 	<div class="nav-bar">
 		<div class="nav-box">
 			<ul>
-				<li>
+				<li v-if="!ismobile">
 					<router-link to="/" class="cf">
 					<p class="nav-icon"><img src="../assets/images/home.png"></p>
 					<p class="nav-txt">首页</p>
@@ -18,6 +18,12 @@
 					<router-link :to="{path:'p2', query: { cid: 50}}" class="cf">
 						<p class="nav-icon"><img src="../assets/images/text.png"></p>
 						<p class="nav-txt">段子</p>
+					</router-link>
+				</li>
+				<li v-if="ismobile">
+					<router-link to="/" class="cf">
+					<p class="nav-icon"><img src="../assets/images/home.png"></p>
+					<p class="nav-txt">首页</p>
 					</router-link>
 				</li>
 				<li>
@@ -45,6 +51,9 @@
 				document.body.scrollTop = 0;	         
 		    }  
 		},
+		created:function(){
+			
+		}
 	}
 </script>
 <style type="text/css">
@@ -58,7 +67,6 @@
 	.to-old:hover{color: #ddd}
 	.nav-icon{display: none;}
 	@media only screen and (max-width: 500px) {
-
 		.nav-bar{position: fixed;bottom: 0px;left: 0px;width: 100%;z-index: 9999;height: 60px;}
 		.nav-box{width: 100%;margin: 0 auto;}
 		.nav-box ul li{flex: 1;width: 20%;max-width: 20%;line-height: 50px;font-size: 15px;}
