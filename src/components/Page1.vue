@@ -69,9 +69,9 @@
 	</div>
 </template>
 <style type="text/css">
-	.doc-list{display: flex;flex-wrap: wrap;margin-left: -0.5%;}
-	.doc-list a{width: 19%;height: 160px;display: block;background-color: #666;color: #fff;margin-bottom: 10px;margin-left: 1%;text-align: left;color: #fff;transition: all 0.6s;position: relative;overflow: hidden;}
-	.doc-list a:hover{box-shadow: 0px 0px 10px rgba(0,0,0,0.6);}
+	.doc-list{display: flex;flex-wrap: wrap;margin-left: -0.25vw;}
+	.doc-list a{width: 19%;height: 160px;display: block;background-color: #666;color: #fff;margin-bottom: 0.5vw;margin-left: 0.5vw;text-align: left;color: #fff;transition: all 0.3s;position: relative;overflow: hidden;}
+	.doc-list a:hover{box-shadow: 0px 0px 10px rgba(0,0,0,0.8);transform: translateY(-2px);}
 	.doc-box{width: 90%;margin: 10px auto;height: 140px;position: relative;overflow: hidden;}
 	.doc-desc{font-size: 12px;color: #999;}
 	.doc-infos{position: absolute;bottom: 0px;color: #999;font-size: 12px;display: block;width: 100%;text-align: right;background-color: #666;height: 22px;line-height: 22px;right: 10px;}
@@ -113,6 +113,7 @@
 		cid:45,
 		loading:false,
 		params:new URLSearchParams(),
+		timer:null,
 	};
 
 	export default{
@@ -134,14 +135,17 @@
 			    p2.then(function(){
 				    data.cid = 10000;
 				    let p2 = _that.get_doc();
-			    })
+			    });
+
 			});
+
 		},
 		methods: {
 	        formatDate(time) {
 	        	return new Date(parseInt(time) * 1000).format('yyyy-MM-dd');
 	        },
 			get_doc(){
+				let _that = this;
 				return new Promise((resolve, reject) => {
 					if(data.loading){return false;}
 					if(data.cid == 45 && data.docs.length > 0){return false;}
@@ -171,17 +175,35 @@
 					    		}
 					    		if(data.cid == 10000){
 					    			data.games.push(res.data[i]);
+					    			if( i == res.data.length -1){
+					    				_that.clearDelay();//取消动画延迟
+					    				// console.info(_that.docs[_that.docs.length-1].delay);
+							    		// console.info(_that.duanzi[_that.duanzi.length-1].delay);
+							    		// console.info(_that.games[_that.games.length-1].delay);
+					    			}
 					    		}				    		
 					    	}
 					    	data.delay += res.data.length*0.1
-					    	data.loading = false;	
+					    	data.loading = false;
 				    	}
 				    	resolve();
 				    	return true;		    	
 					});
 
 			    });
-			}
+			},
+			clearDelay(){
+				let _that = this;
+				for(let i = 0;i<_that.docs.length;i++){
+					_that.docs[i].delay = 0;
+				}
+				for(let i = 0;i<_that.duanzi.length;i++){
+					_that.duanzi[i].delay = 0;
+				}
+				for(let i = 0;i<_that.games.length;i++){
+					_that.games[i].delay = 0;
+				}
+			},
 	    }
 	}
 </script>
