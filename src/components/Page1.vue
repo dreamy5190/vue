@@ -175,11 +175,12 @@
 					    		}
 					    		if(data.cid == 10000){
 					    			data.games.push(res.data[i]);
-					    			if( i == res.data.length -1){
-					    				_that.clearDelay();//取消动画延迟
-					    				// console.info(_that.docs[_that.docs.length-1].delay);
-							    		// console.info(_that.duanzi[_that.duanzi.length-1].delay);
-							    		// console.info(_that.games[_that.games.length-1].delay);
+					    			if( i == res.data.length -1){					    				
+										_that.timer = setTimeout(function(){
+											_that.clearDelay();//取消动画延迟
+											clearTimeout(_that.timer);
+											_that.timer = null;
+										},i*0.1*1000);
 					    			}
 					    		}				    		
 					    	}
